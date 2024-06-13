@@ -1,5 +1,11 @@
 :root{
-  font-size: 16px
+  font-size: 12px;
+  font-family:  Verdana, Geneva, Tahoma, sans-serif;;
+}
+
+#app{
+  width: 100vw;
+  height: 100vh;
 }
 
 *{
@@ -7,4 +13,143 @@
   padding: 0;
   box-sizing: border-box;
   position: relative;
+}
+
+$percents: 100 95 90 85 80 75 70 65 60 55 50 45 40 35 30 25 15 10 5;
+$test-backgrounds: red blue yellow brown black white gray purple cyan green lime none;
+$text-align: right center left justify;
+$justify-flex: right left center space-around space-between;
+
+.flex{
+  display: flex;
+}
+
+.flex-column{
+  flex-direction: column;
+}
+
+.justify-between{
+  justify-content: space-between;
+}
+
+.justify-around{
+  justify-content: space-around;
+}
+
+.deco-underline{
+  text-decoration: underline;
+}
+
+.x-hidden{
+  overflow-x: hidden;
+}
+
+
+@for $i from 1 through 5 {
+  .m-#{$i} {
+    margin: #{$i}rem;
+  }
+
+  .mx-#{$i} {
+    margin: 0 #{$i}rem ;
+  }
+
+  .my-#{$i} {
+    margin: #{$i}rem 0;
+  }
+  .ml-#{$i} {
+    margin-left: #{$i}rem;
+  }
+
+  .mr-#{$i} {
+    margin-right: #{$i}rem;
+  }
+
+  .mt-#{$i} {
+    margin-top: #{$i}rem;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: #{$i}rem;
+  }
+
+  .p-#{$i} {
+    padding: #{$i}rem;
+  }
+
+  .px-#{$i} {
+    padding: 0 #{$i}rem ;
+  }
+
+  .py-#{$i} {
+    padding: #{$i}rem 0;
+  }
+
+  .pl-#{$i} {
+    padding-left: #{$i}rem;
+  }
+
+  .pr-#{$i} {
+    padding-right: #{$i}rem;
+  }
+
+  .pt-#{$i} {
+    padding-top: #{$i}rem;
+  }
+
+  .pb-#{$i} {
+    padding-bottom: #{$i}rem;
+  }
+
+  .fs-#{$i}{
+    font-size: #{$i}rem;
+  }
+}
+
+@for $i from 1 through 3{
+  .fsh-#{$i}{
+    font-size: #{$i - 0.5}rem;
+  }
+
+  .ph-#{$i}{
+    padding: #{$i - 0.5}rem;
+  }
+
+  .mh-#{$i}{
+    margin: #{$i - 0.5}rem;
+  }
+}
+
+@each $justify in $justify-flex{
+  .justify-#{$justify}{
+    justify-content: unquote($justify);
+  }
+}
+
+@each $align in $justify-flex{
+  .align-#{$align}{
+    align-items: unquote($align);
+  }
+}
+
+@each $percent in $percents{
+  .w-#{$percent}{
+    width: unquote($percent+'%');
+  }
+
+  .h-#{$percent}{
+    height: unquote($percent+'%');
+  }
+}
+
+@each $color in $test-backgrounds{
+  .test-bg-#{""+$color}{
+    background-color: $color;
+  }
+}
+
+@each $align in $text-align{
+  .text-#{$align}{
+    text-align: $align;
+  }
 }

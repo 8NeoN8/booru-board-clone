@@ -1,11 +1,46 @@
+.container{
+  width: 100vw;
+  height: 100vh;
+}
+
 .landing-img-container{
-  padding: 1rem;
-  width: 100%;
-  background-color: blue;
-  text-align: center;
+  background-color: skyblue;
 }
 
 .landing-img{
-  width: 100%;
   max-width: 700px;
+}
+
+.search-and-options{
+
+}
+
+.search-bar-container{
+
+}
+
+.search-bar{
+  min-width: 200px;
+  width: 412px;
+  max-width: 100%;
+}
+
+.options{
+  gap: 3rem;
+  padding: 1rem 0;
+}
+
+.landing-link{
+  background-color: lime;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.counter-and-details{
+  overflow-x: hidden;
+  gap: 1rem;
+}
+
+.bottom-side{
+  justify-content: center;
 }
