@@ -44,6 +44,14 @@ $justify-flex: right left center space-around space-between;
   overflow-x: hidden;
 }
 
+.y-hidden{
+  overflow-y: hidden;
+}
+
+.overflow-hidden{
+  overflow: hidden;
+}
+
 
 @for $i from 1 through 5 {
   .m-#{$i} {

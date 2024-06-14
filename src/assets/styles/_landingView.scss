@@ -1,17 +1,95 @@
 .container{
   width: 100vw;
   height: 100vh;
+  background-color: rgb(207, 207, 207);
 }
 
 .landing-img-container{
-  background-color: skyblue;
+  height: 50%;
 }
 
 .landing-img{
   max-width: 700px;
+  height: 100%;
 }
 
-.search-and-options{
+.landing-footer{
+  background-color: gray;
+}
+
+.lower-side{
+
+  .lower-left{
+
+    .cards-title{
+
+    }
+
+    .option-cards{
+      gap: 1rem;
+    }
+
+
+    .card:nth-child(even){
+      margin-bottom: 4rem;
+    }
+
+    .card:nth-child(odd){
+      margin-top: 4rem;
+    }
+
+    .card:hover:nth-child(even){
+      margin-bottom: 0rem;
+      transition: margin-bottom 0.15s;
+    }
+
+    .card:hover:nth-child(odd){
+      margin-top: 0rem;
+      transition: margin-top 0.15s;
+    }
+
+    .card{
+      min-width: 150px;
+      min-height: 150px;
+      max-width: 200px;
+      max-height: 200px;
+      border-radius: 12px;
+      
+      .card-text{
+        border-bottom-left-radius: 12px;
+      }
+      
+      span{
+        align-self: flex-end;
+        max-height: 2rem;
+      }
+    }
+
+    .card{
+      background-image: url('https://img.freepik.com/premium-photo/anime-girl-with-pink-hair-horns-holding-magnifying-glass-generative-ai_1028863-21119.jpg?w=826');
+      background-size: contain;
+
+      &:hover{
+        background-image: url('https://img.freepik.com/premium-photo/anime-girl-with-pink-hair-horns-holding-magnifying-glass-generative-ai_1028863-21119.jpg?w=826');
+      }
+    }
+  }
+
+  .lower-right{
+
+  }
+
+  .divider{
+    height: 80%;
+    width: 0px;
+    border: 1px solid black;
+    opacity: 0.05;
+    color:#00ff00;
+  }
+
+}
+
+/* .search-and-options{
 
 }
 
@@ -43,4 +121,4 @@
 
 .bottom-side{
   justify-content: center;
-}
+} */
