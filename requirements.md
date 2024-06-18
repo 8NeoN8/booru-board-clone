@@ -10,8 +10,6 @@
 + infinite scroll or pagination
   + if pagination, tag listing for each browsing page
   + if infinite scroll, show tags on hover on desktop
-+
-
 
 ## Desired Requirements
 + firebase backend

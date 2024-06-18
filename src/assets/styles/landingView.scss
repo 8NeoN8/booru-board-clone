@@ -1,0 +1,272 @@
+@import './src/assets/styles/_variables.scss';
+
+.container{
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--neon-orange);
+}
+
+.landing-img-container{
+  max-height: 50vh;
+}
+
+.landing-img{
+  max-width: 700px;
+  min-width: 200px;
+  max-height: 50vh;
+  aspect-ratio: auto;
+}
+
+/*
+.landing-footer{
+  background-color: var(--neon-cyan);
+}
+.link-box{
+  text-decoration: none !important;
+}
+.lower-side{
+}
+.lower-left{
+  order: 1;
+  background-color: blue;
+  .cards-title{
+    background-color: var(--neon-cyan);
+    border-radius: 15px;
+  }
+
+  .option-cards{
+    gap: 1rem;
+    background-color: var(--neon-pink);
+    border-radius: 15px;
+    padding-top: 4rem;
+    border: 2px solid black;
+  }
+
+  .card:nth-child(1){
+    //margin-bottom: 1rem;
+    &:hover{
+      //margin-bottom: -1rem;
+    }
+  }
+
+  .card:nth-child(2){
+    //margin-bottom: 3rem;
+    &:hover{
+      //margin-bottom: 1rem;
+    }
+  }
+  .card:nth-child(3){
+    //margin-bottom: 5rem;
+    &:hover{
+      //margin-bottom: 3rem;
+    }
+  }
+  .card:nth-child(4){
+    //margin-bottom: 7rem;
+    &:hover{
+      //margin-bottom: 4rem;
+    }
+  }
+
+  .card:hover{
+    margin-bottom: 0rem;
+    transition: margin-bottom 0.15s;
+  }
+
+  .card{
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 12px;
+    
+    .card-text{
+      border-bottom-left-radius: 12px;
+      background-color: var(--neon-green);
+      //text-decoration: none;
+    }
+
+    &:hover{
+      cursor: pointer;
+    }
+    
+    .button-link{
+      align-self: flex-end;
+      max-height: 2rem;
+      color: black;
+      
+    }
+  }
+
+  .card{
+    background-image: url('https://img.freepik.com/premium-photo/anime-girl-with-pink-hair-horns-holding-magnifying-glass-generative-ai_1028863-21119.jpg?w=826');
+    background-size: contain;
+  }
+}
+.lower-right{
+  order: 2;
+
+  .search-title{
+    background-color: var(--neon-cyan);
+    border-radius: 15px;
+  }
+
+  .search-fields{
+    gap: 1rem;
+    background-color: var(--neon-pink);
+    border-radius: 15px;
+    border: 2px solid black;
+  }
+}
+ */
+
+@media only screen and (max-width: 480px) {
+  .container{
+    width: 100vw;
+    min-height: 800px;
+  }
+  .middle-section{
+    flex-direction: column;
+    height: 100%;
+    
+  }
+
+  .middle-section-cards{
+    height: 40%;
+    width: 100%;;
+  }
+
+  .cards-title, .search-title{
+    background-color: var(--neon-cyan);
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
+
+  .option-cards{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card{
+    height: 80%;
+    border-radius: 8px;
+    background-image: url('https://img.freepik.com/premium-photo/anime-girl-with-pink-hair-horns-holding-magnifying-glass-generative-ai_1028863-21119.jpg?w=826');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 100px;
+    max-width: 200px;
+
+  }
+
+  .card-link{
+    color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: end;
+    text-decoration: none;
+  }
+  .card-text{
+    width: 100%;
+    background-color: var(--neon-lime);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 1.2rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .middle-section-search{
+    width: 100%;
+    height: 53%;
+    padding: 0.5rem
+  }
+
+  .search-bar-section{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search-input-label{
+    font-size: 1.4rem;
+    text-align: center;
+    text-decoration: underline;
+    font-style: italic;
+    border-bottom: 1px var(--neon-lime) solid;
+  }
+
+  .search-input{
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid black;
+
+    &:focus{
+      outline: none;
+    }
+  }
+
+  .search-buttons{
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .s-button{
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--neon-lime);
+    border: var(--neon-blue) 1px solid;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    &:active{
+      background-color: black;
+      background-color: var(--neon-green);
+    }
+  }
+
+  .posts-gifs{
+    width: 100%;
+  }
+
+  .posts-top-text, .posts-number{
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  /* .posts-counter{
+    
+  } */
+
+  .post-gif{
+    height: 75px;
+  }
+
+  .posts-number{
+    text-decoration: underline;
+  }
+
+  .gelbooru-version{
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .bottom-section{
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-text{
+    text-align: center;
+  }
+
+}
