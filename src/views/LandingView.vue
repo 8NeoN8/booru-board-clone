@@ -1,7 +1,7 @@
 <template>
   <div class="container flex flex-column justify-between x-hidden">
 
-    <div class="top-section landing-img-container w-100 text-center flex justify-center align-center">
+    <div class="top-section landing-img-container">
       <img class="landing-img" src="https://safebooru.org/includes/header.png">
     </div>
 
@@ -28,10 +28,13 @@
               </span>
             </RouterLink>
           </div>
+
+          <div class="divider"></div>
+
           <div class="card">
             <RouterLink class="card-link" to="browse"> 
               <span class="card-text">
-                My account
+                My Account
               </span>
             </RouterLink>
           </div>
@@ -98,15 +101,16 @@
 
       </div>
 
-      <footer class="bottom-section footer-section">
-        <p class="footer-text">
-          Total number of visitors so far: 1 billion gizillion 
-          <br> <!-- 36,521,292 -->
-          Original concept by Danbooru. Clone design by AGDevs
-        </p>
-      </footer>
-
+      
     </div>
+    
+    <footer class="bottom-section footer-section">
+      <p class="footer-text">
+        Total number of visitors so far: 1 billion gizillion 
+        <br> <!-- 36,521,292 -->
+        Original concept by Danbooru. Clone design by AGDevs
+      </p>
+    </footer>
 
   </div>
 </template>
