@@ -23,6 +23,11 @@ const routes = [
     component: LandingView,
     name:'Account',
   },
+  { 
+    path: '/forum', 
+    component: LandingView,
+    name:'Forum',
+  },
 ]
 
 export default routes

@@ -61,7 +61,7 @@
 
           <label for="search-input" class="search-input-label">This is a Tag based search</label>
 
-          <input type="text" name="search-input" id="search-input" class="search-input" placeholder="E.x. +glasses +short_hair -black_hair">
+          <input v-model="searchTerms" @input="getAutocomplete()" type="text" name="search-input" id="search-input" class="search-input" placeholder="E.x. +glasses +short_hair -black_hair">
           
         </div>
 
@@ -128,16 +128,26 @@ export default{
       links:['Browse', 'Comments', 'My Account', 'Forum'],
       postCount: 4728638,
       NumberGifs: [4,7,2,8,6,3,8],
+      searchTerms:'',
+      corsProxy: 'https://corsproxy.io/?',
     }
   },
   emits:['updateNav'],
   methods: {
     send(pathName){
       this.$router.push(pathName)
-    }
+    },
+    async getAutocomplete(){
+      if(this.searchTerms == '' || this.searchTerms == null) return
+      let reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/autocomplete.php?q=${this.searchTerms}`)
+      const req = await fetch(reqUrl)
+      if(req){
+        const autocomplete = await req.json()
+        console.log(autocomplete);
+      }
+    },
   },
-  mounted() {
-    this.$emit('updateNav')
+  async mounted() {
   },
 }
 </script>
