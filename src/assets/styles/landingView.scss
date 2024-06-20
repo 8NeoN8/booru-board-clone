@@ -23,178 +23,181 @@
   max-height: 50vh;
   aspect-ratio: auto;
 }
+@media only screen and (min-width: 1280px) {
 
-.middle-section{
-  height: 50%;
-  display: flex;
-}
-
-.middle-section-cards{
-  height: 100%;
-  width: 50%;
-}
-
-.cards-title, .search-title{
-  background-color: var(--neon-orange);
-  border-radius: 5px;
-  padding: 0.5rem;
-  font-size: 2.3rem;
-}
-
-.option-cards{
-  width: 100%;
-  height: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  column-gap: 1.5rem;
-  padding: 1rem;
-}
-
-.card{
-  border-radius: 8px;
-  background-image: url('https://img.freepik.com/premium-photo/anime-girl-with-pink-hair-horns-holding-magnifying-glass-generative-ai_1028863-21119.jpg?w=826');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 180px;
-  height: 180px;
-  background-color: color;
-  animation: shrink 0.15s ease-in-out forwards;
   
-  &:hover{
-    cursor: pointer;
-    animation: grow 0.15s ease-in-out forwards;
+  .middle-section{
+    height: 50%;
+    display: flex;
   }
-}
-
-@keyframes grow {
-  from{
-    transform: scale(1);
+  
+  .middle-section-cards{
+    height: 100%;
+    width: 50%;
   }
-  to{
-    transform: scale(1.1);
+  
+  .cards-title, .search-title{
+    background-color: var(--neon-orange);
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 2.3rem;
   }
-}
-@keyframes shrink {
-  from{
-    transform: scale(1.1);
+  
+  .option-cards{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
+    padding: 1rem;
   }
-  to{
-    transform: scale(1);
+  
+  .card{
+    border-radius: 8px;
+    background-image: url('https://img.freepik.com/premium-photo/anime-girl-with-pink-hair-horns-holding-magnifying-glass-generative-ai_1028863-21119.jpg?w=826');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 180px;
+    height: 180px;
+    background-color: color;
+    animation: shrink 0.15s ease-in-out forwards;
+    
+    &:hover{
+      cursor: pointer;
+      animation: grow 0.15s ease-in-out forwards;
+    }
   }
-}
-
-.divider{
-  flex-basis: 100%;
-  height: 0;
-}
-
-.card-link{
-  color: black;
-  width: 180px;
-  height: 180px;
-  display: flex;
-  text-align: center;
-  align-items: end;
-  text-decoration: none;
-}
-.card-text{
-  width: 100%;
-  background-color: var(--neon-orange);
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  font-size: 1.4rem;
-  padding: 0.3rem 0.5rem;
-}
-
-.middle-section-search{
-  width: 50%;
-  height: 100%;
-  padding: 0.5rem;
-}
-
-.search-bar-section{
-  display: flex;
-  flex-direction: column;
-}
-
-.search-input-label{
-  font-size: 1.6rem;
-  text-align: center;
-  text-decoration: underline;
-  font-style: italic;
-}
-
-.search-input{
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid black;
-  font-size: 1.5rem;
-  &:focus{
-    outline: none;
+  
+  @keyframes grow {
+    from{
+      transform: scale(1);
+    }
+    to{
+      transform: scale(1.1);
+    }
   }
-}
-
-.search-buttons{
-  padding: 0.5rem 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-.s-button{
-  padding: 0.4rem;
-  font-size: 1.8rem;
-  border-radius: 8px;
-  border: none;
-  background-color: var(--neon-orange);
-  border: var(--neon-blue) 1px solid;
-
-  &:hover{
-    cursor: pointer;
+  @keyframes shrink {
+    from{
+      transform: scale(1.1);
+    }
+    to{
+      transform: scale(1);
+    }
   }
-
-  &:active{
-    background-color: var(--neon-red);
+  
+  .divider{
+    flex-basis: 100%;
+    height: 0;
   }
-}
-
-.posts-gifs{
-  width: 100%;
-  height: 63%;
-}
-
-.posts-top-text, .posts-number{
-  text-align: center;
-  font-size: 2.1rem;
-}
-
-.post-gif{
-  height: 185px;
-}
-
-.posts-number{
-  text-decoration: underline;
-}
-
-.gelbooru-version{
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: 1.3rem;
-}
-
-.bottom-section{
-  display: flex;
-  justify-content: center;
-  background-color: var(--neon-orange);
-  padding: 0.5rem;
-  font-size: 1.3rem;
-}
-
-.footer-text{
-  text-align: center;
+  
+  .card-link{
+    color: black;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    text-align: center;
+    align-items: end;
+    text-decoration: none;
+  }
+  .card-text{
+    width: 100%;
+    background-color: var(--neon-orange);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 1.4rem;
+    padding: 0.3rem 0.5rem;
+  }
+  
+  .middle-section-search{
+    width: 50%;
+    height: 100%;
+    padding: 0.5rem;
+  }
+  
+  .search-bar-section{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .search-input-label{
+    font-size: 1.6rem;
+    text-align: center;
+    text-decoration: underline;
+    font-style: italic;
+  }
+  
+  .search-input{
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid black;
+    font-size: 1.5rem;
+    &:focus{
+      outline: none;
+    }
+  }
+  
+  .search-buttons{
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .s-button{
+    padding: 0.4rem;
+    font-size: 1.8rem;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--neon-orange);
+    border: var(--neon-blue) 1px solid;
+  
+    &:hover{
+      cursor: pointer;
+    }
+  
+    &:active{
+      background-color: var(--neon-red);
+    }
+  }
+  
+  .posts-gifs{
+    width: 100%;
+    height: 63%;
+  }
+  
+  .posts-top-text, .posts-number{
+    text-align: center;
+    font-size: 2.1rem;
+  }
+  
+  .post-gif{
+    height: 185px;
+  }
+  
+  .posts-number{
+    text-decoration: underline;
+  }
+  
+  .gelbooru-version{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+  
+  .bottom-section{
+    display: flex;
+    justify-content: center;
+    background-color: var(--neon-orange);
+    padding: 0.5rem;
+    font-size: 1.3rem;
+  }
+  
+  .footer-text{
+    text-align: center;
+  }
 }
 
 
@@ -222,31 +225,43 @@
     background-color: var(--neon-orange);
     border-radius: 5px;
     padding: 0.5rem;
+    font-size: 1.8rem;
   }
 
   .option-cards{
     width: 100%;
+    background-color: blue;
+    min-height: fit-content;
     height: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    //flex-wrap: wrap;
   }
 
   .card{
+    min-height: 100px;
     height: 80%;
     border-radius: 8px;
     background-image: url('https://img.freepik.com/premium-photo/anime-girl-with-pink-hair-horns-holding-magnifying-glass-generative-ai_1028863-21119.jpg?w=826');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-width: 100px;
+    min-width: 80px;
     max-width: 200px;
 
   }
 
+  /* .divider{
+    flex-basis: 100%;
+    width: 0;
+  } */
+
   .card-link{
     color: black;
+    min-width: 100px;
     width: 100%;
+    min-height: 100px;
     height: 100%;
     display: flex;
     text-align: center;
@@ -345,10 +360,19 @@
   .bottom-section{
     display: flex;
     justify-content: center;
+    background-color: var(--neon-orange);
   }
 
   .footer-text{
     text-align: center;
   }
+
+}
+
+@media only screen and (max-width: 350px){
+  /* .option-cards{
+    flex-direction: column;
+    min-height: fit-content !important;
+  } */
 
 }

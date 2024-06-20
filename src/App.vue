@@ -20,8 +20,6 @@ export default{
       forTags: 'https://safebooru.org/index.php?page=dapi&s=tag&q=index&name=1girl',
       forMultipleTags: 'https://safebooru.org/index.php?page=post&s=list&tags=1girl+glasses',
 
-
-
       cardsImgs:[
         {
           searchCard: 'https://pixabay.com/illustrations/magnifying-glass-glass-search-4186151/',

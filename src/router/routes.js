@@ -3,19 +3,25 @@ import LandingView from '../views/LandingView.vue'
 
 
 const routes = [
-  {
-    path: '/browse',
-    name:'Browser',
-    component: BrowseView
-    
-  },
   { 
     path: '/', 
     component: LandingView,
     name:'Landing',
-    props: {
-      showNavBar: false
-    }
+  },
+  {
+    path: '/browse',
+    name:'Browser',
+    component: BrowseView    
+  },
+  { 
+    path: '/comments', 
+    component: LandingView,
+    name:'Comments',
+  },
+  { 
+    path: '/account', 
+    component: LandingView,
+    name:'Account',
   },
 ]
 

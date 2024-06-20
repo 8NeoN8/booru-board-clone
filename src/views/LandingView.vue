@@ -22,7 +22,7 @@
             </RouterLink>
           </div>
           <div class="card">
-            <RouterLink class="card-link" to="browse"> 
+            <RouterLink class="card-link" to="comments"> 
               <span class="card-text">
                 Comments
               </span>
@@ -32,14 +32,14 @@
           <div class="divider"></div>
 
           <div class="card">
-            <RouterLink class="card-link" to="browse"> 
+            <RouterLink class="card-link" to="account"> 
               <span class="card-text">
                 My Account
               </span>
             </RouterLink>
           </div>
           <div class="card">
-            <RouterLink class="card-link" to="browse"> 
+            <RouterLink class="card-link" to="forum"> 
               <span class="card-text">
                 The Forum
               </span>
