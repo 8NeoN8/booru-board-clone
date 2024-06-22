@@ -1,5 +1,6 @@
 import BrowseView from '../views/BrowseView.vue'
 import LandingView from '../views/LandingView.vue'
+import PostView from '../views/PostView.vue'
 
 
 const routes = [
@@ -27,6 +28,12 @@ const routes = [
     path: '/forum', 
     component: LandingView,
     name:'Forum',
+  },
+  { 
+    path: '/post/:postId', 
+    component: PostView,
+    name:'Post',
+    props: true
   },
 ]
 
