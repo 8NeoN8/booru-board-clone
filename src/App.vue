@@ -24,8 +24,7 @@ export default{
       cardsImgs:[
         {
           searchCard: 'https://pixabay.com/illustrations/magnifying-glass-glass-search-4186151/',
-          searchHover: 'https://www.freepik.com/premium-ai-image/anime-girl-with-pink-hair-horns-holding-magnifying-glass-generative-ai_83959271.htm',
-          a: ''
+          searchHover: 'https://www.freepik.com/premium-ai-image/anime-girl-with-pink-hair-horns-holding-magnifying-glass-generative-ai_83959271.htm'
 
         },
       ]
