@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img :src="`https://safebooru.org//samples/4619/sample_3afeefcd1d3fc85491fa81cf0677c35b65eb1f66.jpg?5014701`" alt="">
+    <img :src="`https://safebooru.org//images/${postInfo.directory}/${postInfo.image}?${postInfo.id}`" alt="">
     {{ postId }}
   </div>
 </template>
@@ -10,14 +10,30 @@ export default{
   name: 'PostView',
   data() {
     return {
-      debug: 'debug'
+      debug: 'debug',
+      postInfo: {}
     }
   },
   props:{
     postId:{
       type: String
     }
-  }
+  },
+  methods:{
+    async getPostInfo(postId){
+      let reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/index.php?page=dapi&s=post&q=index&id=${postId}&json=1`)
+      const req = await fetch(reqUrl)
+      if(req){
+        let res = await req.json()
+        this.postInfo = res[Object.keys(res)[0]]
+        console.log(this.postInfo);
+        
+      }
+    }
+  },
+  mounted() {
+    this.getPostInfo(this.postId)
+  },
 }
 </script>
 

@@ -19,6 +19,7 @@ export default{
       autocompleteLinkForSearchInput: 'https://safebooru.org/autocomplete.php?q=${input}',
       forTags: 'https://safebooru.org/index.php?page=dapi&s=tag&q=index&name=1girl',
       forMultipleTags: 'https://safebooru.org/index.php?page=post&s=list&tags=1girl+glasses',
+      getTagInfoAndType: 'https://safebooru.org/index.php?page=dapi&s=tag&q=index&pid=0&name=animated',
 
       cardsImgs:[
         {

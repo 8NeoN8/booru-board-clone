@@ -212,8 +212,12 @@ export default{
       se.focus()
     },
     randomPost(){
+      let postId = this.randomId()
+      this.$router.push(`/post/${postId}`)
+    },
+    randomId(){
       let randomPostId = parseInt(Math.random() * this.postCount);
-      this.$router.push(`/post/${randomPostId}`)
+      return randomPostId
     },
     sendSearch(){
 
