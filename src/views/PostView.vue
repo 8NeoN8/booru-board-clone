@@ -14,7 +14,12 @@
       </div>
     </div>
 
-    <img :src="`https://safebooru.org//images/${postInfo.directory}/${postInfo.image}?${postInfo.id}`" alt="">
+    <!-- <div class="original-image" :if="postInfo.sample == false" :v-show="postInfo.sample == false">
+    </div>
+    <div class="sample-image" :if="postInfo.sample == true" :v-show="postInfo.sample == true">
+      <img :src="sampleUrl" alt="">
+    </div> -->
+    <img v-if="Object.keys(postInfo)" :src="postInfo.sample ? sampleUrl : originalUrl" alt="">
     {{ postId }}
   </div>
 </template>
@@ -30,9 +35,18 @@ export default{
       postTags: []
     }
   },
+  computed:{
+    originalUrl(){
+      return `https://safebooru.org//images/${this.postInfo.directory}/${this.postInfo.image}?${this.postInfo.id}`
+    },
+    sampleUrl(){
+      return `https://safebooru.org//samples/${this.postInfo.directory}/sample_${this.postInfo.image}?${this.postInfo.id}`
+    },
+  },
   props:{
     postId:{
-      type: String
+      type: String,
+      default: '4959145'
     }
   },
   methods:{
@@ -44,7 +58,7 @@ export default{
           let res = await req.json()
           this.postInfo = res[Object.keys(res)[0]]
           console.log(this.postInfo);
-          this.getPostTags(this.postInfo.tags.split(' '))
+          //this.getPostTags(this.postInfo.tags.split(' '))
         }
       } catch (error) {
         console.log(error);

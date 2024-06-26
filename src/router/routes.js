@@ -30,9 +30,14 @@ const routes = [
     name:'Forum',
   },
   { 
-    path: '/post/:postId', 
+    path: '/post', 
     component: PostView,
     name:'Post',
+  },
+  { 
+    path: '/post/:postId', 
+    component: PostView,
+    name:'PostFull',
     props: true
   },
 ]
