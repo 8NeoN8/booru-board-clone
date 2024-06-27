@@ -4,10 +4,16 @@
     <div class="navbar"></div>
 
     <div class="flex">
-      <div class="post-info-sidebar"></div>
+      <div class="post-info-sidebar">
+        <TagList></TagList>
+        <!-- <StatList></StatList> -->
+        <div v-if="postInfo.sample && !originalView" class="view-original-button"></div>
+      </div>
       <div class="post-content">
 
-        <div class="post-image"></div>
+        <div class="post-image">
+          <img v-if="Object.keys(postInfo)" :src="postInfo.sample ? sampleUrl : originalUrl" alt="">
+        </div>
 
         <div class="post-comments"></div>
 
@@ -19,12 +25,14 @@
     <div class="sample-image" :if="postInfo.sample == true" :v-show="postInfo.sample == true">
       <img :src="sampleUrl" alt="">
     </div> -->
-    <img v-if="Object.keys(postInfo)" :src="postInfo.sample ? sampleUrl : originalUrl" alt="">
-    {{ postId }}
+    
+
   </div>
 </template>
 
 <script>
+import TagList from '../components/TagList.vue'
+
 export default{
   name: 'PostView',
   data() {
@@ -32,7 +40,10 @@ export default{
       debug: 'debug',
       postInfo: {},
       postComments: [],
-      postTags: []
+      postTags: [],
+      pageXML: '',
+      postStats: {},
+      originalView: true
     }
   },
   computed:{
@@ -48,6 +59,9 @@ export default{
       type: String,
       default: '4959145'
     }
+  },
+  components:{
+    TagList
   },
   methods:{
     async getPostInfo(postId){
@@ -101,7 +115,7 @@ export default{
     },
     async getPostTags(tags){
       this.postTags = []
-      console.log(tags);
+      //console.log(tags);
       for (let i = 0; i < tags.length; i++) {
 
         
@@ -122,7 +136,7 @@ export default{
 
       this.orderPostTags()
 
-      console.log(this.postTags);
+      //console.log(this.postTags);
 
 
     },
@@ -144,16 +158,53 @@ export default{
       let orderedTags = {}
       orderedTags.general = this.postTags.filter((tag) => tag.type == 0)
       orderedTags.artist = this.postTags.filter((tag) => tag.type == 1)
-      orderedTags.metadata = this.postTags.filter((tag) => tag.type == 2)
+      //orderedTags.metadata = this.postTags.filter((tag) => tag.type == 2)
       orderedTags.copyright = this.postTags.filter((tag) => tag.type == 3)
       orderedTags.character = this.postTags.filter((tag) => tag.type == 4)
       this.postTags = orderedTags
-      console.log(this.postTags);
+      //console.log(this.postTags);
     },
+    async postPageScrapper(){
+      let reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/index.php?page=post&s=view&id=${this.postId}`)
+      const req = await fetch(reqUrl)
+
+      if(req){
+        let res = await req.text()
+        
+        let parser = new DOMParser()
+        let xml = parser.parseFromString(res, 'text/html')
+
+        this.pageXML = xml
+        if(res) this.setPostStats()
+      }
+    },
+    async setPostStats(){
+      const createDate = new Date(this.postInfo.change * 1000)
+      if(!this.pageXML) return
+      let imgSourceContainer = this.pageXML
+      imgSourceContainer = Array.from(imgSourceContainer.getElementsByTagName('li'))
+      imgSourceContainer = imgSourceContainer.filter((x) => x.innerHTML.includes('Source'))[0]
+      let imgSource = imgSourceContainer.innerText.split(': ')[1]
+
+
+      let stats = {
+        id: this.postInfo.id,
+        posted: `${createDate.getFullYear()}-${createDate.getMonth()}-${createDate.getDate()}`,
+        by: this.postInfo.owner,
+        size: `${this.postInfo.width}x${this.postInfo.height}`,
+        source: imgSource,
+        rating: this.postInfo.rating,
+        score: this.postInfo.score ? this.postInfo.score : 0,
+        
+      }
+      
+      this.postStats = stats
+    }
   },
   mounted() {
+    //this.postPageScrapper()
     this.getPostInfo(this.postId)
-    this.getPostComments(this.postId)
+    //this.getPostComments(this.postId)
   },
 }
 </script>
