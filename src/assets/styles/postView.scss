@@ -1,0 +1,40 @@
+#app{
+  background-color: red;
+  width: 99vw;
+}
+
+.container{
+  all:unset;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  background-color: teal;
+  
+  display: flex;
+}
+
+
+.post-info-sidebar{
+  background-color: purple;
+  padding: 1rem;
+}
+
+.post-content{
+  padding: 1rem;
+  background-color: lime;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.post-image{
+  background-color: blue;
+  width: 100%;
+  text-align: center;
+}
+
+.post-comments{
+  background-color: gray;
+}

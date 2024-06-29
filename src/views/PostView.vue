@@ -1,37 +1,31 @@
 <template>
   <div class="container">
 
-    <div class="navbar"></div>
-
-    <div class="flex">
-      <div class="post-info-sidebar">
-        <TagList></TagList>
-        <!-- <StatList></StatList> -->
-        <div v-if="postInfo.sample && !originalView" class="view-original-button"></div>
-      </div>
-      <div class="post-content">
-
-        <div class="post-image">
-          <img v-if="Object.keys(postInfo)" :src="postInfo.sample ? sampleUrl : originalUrl" alt="">
-        </div>
-
-        <div class="post-comments"></div>
-
-      </div>
+    <div class="post-info-sidebar">
+      <TagList :tagListObj="postTags"></TagList>
+      <StatList :stats="postStats"></StatList>
+      <div v-if="postInfo.sample && !originalView" class="view-original-button">View Original</div>
     </div>
 
-    <!-- <div class="original-image" :if="postInfo.sample == false" :v-show="postInfo.sample == false">
-    </div>
-    <div class="sample-image" :if="postInfo.sample == true" :v-show="postInfo.sample == true">
-      <img :src="sampleUrl" alt="">
-    </div> -->
-    
+    <div class="post-content">
+
+      <div class="post-image">
+        <img v-if="Object.keys(postInfo)" :src="postInfo.sample ? sampleUrl : originalUrl" :width="postInfo.width" :height="postInfo.height">
+      </div>
+
+      <div class="post-comments">
+        <CommentList :comments="postComments"></CommentList>
+      </div>
+
+    </div>    
 
   </div>
 </template>
 
 <script>
 import TagList from '../components/TagList.vue'
+import StatList from '../components/StatList.vue'
+import CommentList from '../components/CommentList.vue'
 
 export default{
   name: 'PostView',
@@ -61,7 +55,9 @@ export default{
     }
   },
   components:{
-    TagList
+    TagList,
+    StatList,
+    CommentList,
   },
   methods:{
     async getPostInfo(postId){
@@ -72,7 +68,8 @@ export default{
           let res = await req.json()
           this.postInfo = res[Object.keys(res)[0]]
           console.log(this.postInfo);
-          //this.getPostTags(this.postInfo.tags.split(' '))
+          this.getPostTags(this.postInfo.tags.split(' '))
+          this.postPageScrapper()
         }
       } catch (error) {
         console.log(error);
@@ -156,13 +153,13 @@ export default{
     },
     orderPostTags(){
       let orderedTags = {}
-      orderedTags.general = this.postTags.filter((tag) => tag.type == 0)
-      orderedTags.artist = this.postTags.filter((tag) => tag.type == 1)
       //orderedTags.metadata = this.postTags.filter((tag) => tag.type == 2)
       orderedTags.copyright = this.postTags.filter((tag) => tag.type == 3)
       orderedTags.character = this.postTags.filter((tag) => tag.type == 4)
+      orderedTags.artist = this.postTags.filter((tag) => tag.type == 1)
+      orderedTags.general = this.postTags.filter((tag) => tag.type == 0)
       this.postTags = orderedTags
-      //console.log(this.postTags);
+      console.log(this.postTags);
     },
     async postPageScrapper(){
       let reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/index.php?page=post&s=view&id=${this.postId}`)
@@ -199,23 +196,24 @@ export default{
       }
       
       this.postStats = stats
+      //console.log(this.postStats);
     }
   },
   mounted() {
-    //this.postPageScrapper()
     this.getPostInfo(this.postId)
-    //this.getPostComments(this.postId)
+    this.getPostComments(this.postId)
   },
 }
 </script>
 
 <style lang="scss">
-  /*
-    tag type 0 es general/metadata
-    tag type 1 es artist
-    tag type 2 es metadata NO FUNCIONA
-    tag type 3 es copyright
-    tag type 4 es chracter
-  
-  */
+/*
+  tag type 0 es general/metadata
+  tag type 1 es artist
+  tag type 2 es metadata NO FUNCIONA
+  tag type 3 es copyright
+  tag type 4 es chracter
+*/
+@import '../assets/styles/postView.scss';
+
 </style>

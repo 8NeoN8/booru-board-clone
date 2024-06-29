@@ -1,15 +1,20 @@
 .tagList{
   background-color: red;
-  height: 100%;
   width: 20rem;
+}
+.list-title{
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 
 .section-title{
   background-color: cyan;
-  margin: .5rem;
+  padding: .5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .list-tag{
   background-color: yellow;
-  margin: .5rem;
+  padding: .5rem;
 }

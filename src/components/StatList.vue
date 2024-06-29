@@ -4,11 +4,15 @@
       Statistics
     </div>
 
-    <div class="stats-content">
+    <ul class="stats-content">
       
-      
+      <template v-for="(stat, key) in stats" :key="key">
+        <li class="stat-element">
+          {{ key }} : {{ stat }}
+        </li>
+      </template>
 
-    </div>
+    </ul>
 
   </div>
 </template>
