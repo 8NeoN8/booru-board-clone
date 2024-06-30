@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex flex-column justify-between x-hidden">
+  <div class="container landing-container flex flex-column justify-between x-hidden">
 
     <div class="top-section landing-img-container">
       <img class="landing-img" src="https://safebooru.org/includes/header.png">

@@ -8,7 +8,7 @@
       
       <div class="list-section" v-for="(section, key) in tagListObj" :key="key">
         <div class="section-title">
-          {{ key.toUpperCase() }}
+          {{ key }}
         </div>
         <div class="list-tag" v-for="(tag, index) in section" :key="index">
           {{ tag.name }} - {{ tag.count }}

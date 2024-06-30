@@ -1,9 +1,11 @@
+@import './src/assets/styles/_variables.scss';
+
 #app{
   background-color: red;
   width: 99vw;
 }
 
-.container{
+.post-container{
   all:unset;
   padding: 0;
   margin: 0;

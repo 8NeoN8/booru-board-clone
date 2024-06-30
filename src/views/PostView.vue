@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container post-container">
 
     <div class="post-info-sidebar">
       <TagList :tagListObj="postTags"></TagList>
@@ -112,29 +112,29 @@ export default{
     },
     async getPostTags(tags){
       this.postTags = []
-      //console.log(tags);
+
+      let tagsUrls = []
       for (let i = 0; i < tags.length; i++) {
 
-        
         let reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/index.php?page=dapi&s=tag&q=index&pid=0&name=${tags[i]}`)
-        const req = await fetch(reqUrl)
 
-        if(req){
-          let res = await req.text()
-
-          let parser = new DOMParser()
-          let xml = parser.parseFromString(res, 'text/xml')
-
-
-          this.postTags.push(this.parseXmlTagFunYay(xml))
-        }
+        tagsUrls.push(fetch(reqUrl))
 
       }
 
+      let responses = await Promise.all(tagsUrls)
+      
+      for (let i = 0; i < responses.length; i++) {
+
+        let res = await responses[i].text()
+
+        let parser = new DOMParser()
+        let xml = parser.parseFromString(res, 'text/xml')
+
+        this.postTags.push(this.parseXmlTagFunYay(xml))
+      }
+
       this.orderPostTags()
-
-      //console.log(this.postTags);
-
 
     },
     parseXmlTagFunYay(xml){
@@ -154,10 +154,10 @@ export default{
     orderPostTags(){
       let orderedTags = {}
       //orderedTags.metadata = this.postTags.filter((tag) => tag.type == 2)
-      orderedTags.copyright = this.postTags.filter((tag) => tag.type == 3)
-      orderedTags.character = this.postTags.filter((tag) => tag.type == 4)
-      orderedTags.artist = this.postTags.filter((tag) => tag.type == 1)
-      orderedTags.general = this.postTags.filter((tag) => tag.type == 0)
+      orderedTags.COPYRIGHT = this.postTags.filter((tag) => tag.type == 3)
+      orderedTags.CHARACTER = this.postTags.filter((tag) => tag.type == 4)
+      orderedTags.ARTIST = this.postTags.filter((tag) => tag.type == 1)
+      orderedTags.GENERAL = this.postTags.filter((tag) => tag.type == 0)
       this.postTags = orderedTags
       console.log(this.postTags);
     },

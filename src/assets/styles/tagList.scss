@@ -17,4 +17,8 @@
 .list-tag{
   background-color: yellow;
   padding: .5rem;
+
+  &:hover{
+    cursor: pointer;
+  }
 }

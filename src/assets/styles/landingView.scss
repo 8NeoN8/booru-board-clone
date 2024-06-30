@@ -2,11 +2,13 @@
 
 
 //* DESKTOP DESIGN STYLES
-.container{
+.landing-container{
   width: 100vw;
   height: 100vh;
   min-height: 820px;
+  display: block !important;
   background-color: var(--neon-light-blue);
+  padding: 0 !important;
 }
 
 .landing-img-container{
@@ -212,9 +214,11 @@
   .bottom-section{
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: var(--neon-white);
     padding: 0.5rem;
     font-size: 1.3rem;
+    height: 5%;
   }
   
   .footer-text{
