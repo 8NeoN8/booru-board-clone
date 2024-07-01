@@ -10,8 +10,10 @@
         <div class="section-title">
           {{ key }}
         </div>
-        <div class="list-tag" v-for="(tag, index) in section" :key="index">
-          {{ tag.name }} - {{ tag.count }}
+        <div class="section-tags">
+          <div class="list-tag" v-for="(tag, index) in section" :key="index" @click="sendTagBrowse()">
+            {{ tag.name }} - {{ tag.count }}
+          </div>
         </div>
       </div>
 

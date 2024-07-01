@@ -1,22 +1,51 @@
+@import './src/assets/styles/_variables.scss';
 .tagList{
-  background-color: red;
+  //background-color: white;
   width: 20rem;
 }
 .list-title{
   font-size: 1.3rem;
   font-weight: bold;
+  text-align: center;
+  background-color: var(--neon-white);
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px gray;
+}
+
+.list-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid gray;
+  box-shadow: 2px 2px 2px gray;
+  margin-bottom: 0.5rem;
+  background-color: var(--neon-white);
+}
+
+.list-section{
+  background-color: var(--neon-light-blue);
 }
 
 .section-title{
-  background-color: cyan;
+  background-color: var(--neon-white);
   padding: .5rem;
   font-weight: bold;
   font-size: 1.1rem;
 }
+.section-tags{
+  background-color: var(--neon-light-blue);
+  
+  //padding: 0.3rem;
+}
 
 .list-tag{
-  background-color: yellow;
+  //background-color: yellow;
+  background-color: var(--neon-white);
   padding: .5rem;
+  
 
   &:hover{
     cursor: pointer;

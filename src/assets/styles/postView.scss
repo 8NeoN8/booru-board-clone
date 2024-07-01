@@ -11,14 +11,14 @@
   margin: 0;
   box-sizing: border-box;
   position: relative;
-  background-color: teal;
+  background-color: var(--neon-light-blue);
   
   display: flex;
 }
 
 
 .post-info-sidebar{
-  background-color: purple;
+  //background-color: purple;
   padding: 1rem;
 }
 
