@@ -1,16 +1,13 @@
 @import './src/assets/styles/_variables.scss';
 .tagList{
-  //background-color: white;
   width: 20rem;
+  background-color: var(--neon-white);
+  padding: 0.5rem;
 }
 .list-title{
-  font-size: 1.3rem;
   font-weight: bold;
-  text-align: center;
-  background-color: var(--neon-white);
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
-  border-radius: 8px;
-  box-shadow: 2px 2px 2px gray;
 }
 
 .list-content{
@@ -18,36 +15,61 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid gray;
-  box-shadow: 2px 2px 2px gray;
-  margin-bottom: 0.5rem;
-  background-color: var(--neon-white);
-}
-
-.list-section{
-  background-color: var(--neon-light-blue);
 }
 
 .section-title{
-  background-color: var(--neon-white);
-  padding: .5rem;
   font-weight: bold;
-  font-size: 1.1rem;
-}
-.section-tags{
+  font-size: 1.2rem;
   background-color: var(--neon-light-blue);
+  padding: 0.3rem;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.section-tags{
+  border: 2px solid var(--neon-light-blue);
+  padding: 0.2rem;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   
-  //padding: 0.3rem;
+}
+
+.Copyright-tags{
+  color: #bd3e3c;
+  .list-tag:hover{
+    color: var(--neon-red);
+  }
+}
+
+.Character-tags{
+  color: #5cb72b;
+  .list-tag:hover{
+    color: var(--neon-lime);
+  }
+}
+
+.General-tags{
+  color: var(--neon-blue);
+  .list-tag:hover{
+    color: var(--neon-light-blue);
+  }
+}
+
+.Artist-tags{
+  color: #be722f;
+  .list-tag:hover{
+    color: var(--neon-orange);
+  }
 }
 
 .list-tag{
-  //background-color: yellow;
-  background-color: var(--neon-white);
-  padding: .5rem;
-  
+  display: flex;
+  justify-content: space-between;
 
   &:hover{
     cursor: pointer;
+  }
+  span{
+    display: inline-block;
   }
 }

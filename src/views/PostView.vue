@@ -154,10 +154,10 @@ export default{
     orderPostTags(){
       let orderedTags = {}
       //orderedTags.metadata = this.postTags.filter((tag) => tag.type == 2)
-      orderedTags.COPYRIGHT = this.postTags.filter((tag) => tag.type == 3)
-      orderedTags.CHARACTER = this.postTags.filter((tag) => tag.type == 4)
-      orderedTags.ARTIST = this.postTags.filter((tag) => tag.type == 1)
-      orderedTags.GENERAL = this.postTags.filter((tag) => tag.type == 0)
+      orderedTags.Copyright = this.postTags.filter((tag) => tag.type == 3)
+      orderedTags.Character = this.postTags.filter((tag) => tag.type == 4)
+      orderedTags.Artist = this.postTags.filter((tag) => tag.type == 1)
+      orderedTags.General = this.postTags.filter((tag) => tag.type == 0)
       this.postTags = orderedTags
       console.log(this.postTags);
     },
@@ -201,7 +201,7 @@ export default{
   },
   mounted() {
     this.getPostInfo(this.postId)
-    this.getPostComments(this.postId)
+    //this.getPostComments(this.postId)
   },
 }
 </script>

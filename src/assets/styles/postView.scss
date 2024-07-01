@@ -19,12 +19,12 @@
 
 .post-info-sidebar{
   //background-color: purple;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .post-content{
-  padding: 1rem;
-  background-color: lime;
+  padding: 0.5rem;
+  background-color: var(--neon-white);
   display: flex;
   flex-direction: column;
   gap: 2rem;

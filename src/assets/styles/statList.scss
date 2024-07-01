@@ -1,8 +1,14 @@
+
 .statList{
-  background-color: blue;
-  color: white;
   width: 20rem;
+  background-color: var(--neon-white);
   padding: 0.5rem;
+}
+
+.stats-title{
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .stats-content{
@@ -10,6 +16,21 @@
 }
 
 .stat-element{
-  background-color: green;
   margin-bottom: 0.3rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
+
+  border: 2px solid var(--neon-light-blue);
+  padding: 0.1rem;
+  border-radius: px;
+  font-size: 1.1rem;
+}
+
+.uploader-or-source-link{
+  text-decoration: none;
+  
+  &:hover{
+    color: var(--neon-light-blue);
+  }
 }

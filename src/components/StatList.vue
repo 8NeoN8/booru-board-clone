@@ -7,8 +7,11 @@
     <ul class="stats-content">
       
       <template v-for="(stat, key) in stats" :key="key">
-        <li class="stat-element">
-          {{ key }} : {{ stat }}
+        <li v-if="key != 'by' && key != 'source'" class="stat-element">
+          {{ key }}: {{ stat }}
+        </li>
+        <li v-if="key == 'by' || key == 'source'" class="stat-element">
+          {{ key }}: <a target="_blank" :href="'https://'+stat" class="uploader-or-source-link">{{ stat }}</a>
         </li>
       </template>
 
