@@ -1,15 +1,45 @@
 .commentList{
-  background-color: yellow;
-  width: fit-content;
-  height: fit-content;
-  width: 100%;
+  background-color: var(--neon-light-blue);
+  padding: 0.5rem;
+}
+
+.comment-amount{
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: var(--neon-white);
+  margin-bottom: 1rem;
 }
 
 .comments-content{
   list-style: none;
-  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .comment{
-  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--neon-white);
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.comment-info{
+  display: flex;
+  justify-content: left;
+  gap: 1rem;
+}
+
+.comment-creator{
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.comment-creation-date{
+  text-decoration: underline;
+  color: var(--neon-orange);
 }

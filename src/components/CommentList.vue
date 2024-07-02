@@ -1,17 +1,22 @@
 <template>
   <div class="commentList">
-
+    <div class="comment-amount">
+      Total Comments: {{ comments.length }}
+    </div>
     <ul class="comments-content">
-      <div class="comment-amount">
-        Total comments: {{ comments.length }}
-      </div>
       <template v-for="(comment, index) in comments" :key="index">
         <li class="comment">
-          {{ comment.creator }}
-          <br>
-          {{ comment.body }}
-          <br>
-          {{ comment.created_at }}
+          <div class="comment-info">
+            <div class="comment-creator">
+              {{ comment.creator }}
+            </div>
+            <div class="comment-creation-date">
+              {{ comment.created_at }} 
+            </div>
+          </div>
+          <div class="comment-body">
+            {{ comment.body }}
+          </div>
         </li>
       </template>
 

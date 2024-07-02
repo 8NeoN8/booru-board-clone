@@ -97,7 +97,7 @@ export default{
         for (let i = 0; i < comments.length; i++) {
           
           let comment = {
-            created_at: comments[i].attributes.created_at.value,
+            created_at: comments[i].attributes.created_at.value.split(' ')[0],
             post_id: comments[i].attributes.post_id.value,
             body: comments[i].attributes.body.value,
             creator: comments[i].attributes.creator.value,
@@ -201,7 +201,7 @@ export default{
   },
   mounted() {
     this.getPostInfo(this.postId)
-    //this.getPostComments(this.postId)
+    this.getPostComments(this.postId)
   },
 }
 </script>
