@@ -2,20 +2,27 @@
   <div class="container post-container">
 
     <div class="post-info-sidebar">
-      <TagList :tagListObj="postTags"></TagList>
-      <StatList :stats="postStats"></StatList>
-      <div v-if="postInfo.sample && !originalView" class="view-original-button">View Original</div>
+      <div class="sidebar-content">
+        <SearchBar></SearchBar>
+        <TagList :tagListObj="postTags"></TagList>
+        <StatList :stats="postStats"></StatList>
+        <div class="view-original-button-container">
+          <button v-if="postInfo.sample && !originalView" class="view-original-button" @click="changeToOriginal()">View Original</button>
+        </div>
+      </div>
     </div>
 
     <div class="post-content">
 
       <div class="post-image">
-        <img v-if="Object.keys(postInfo)" :src="postInfo.sample ? sampleUrl : originalUrl" :width="postInfo.width" :height="postInfo.height">
+        <img v-if="Object.keys(postInfo)" 
+        :src="postInfo.sample ? sampleUrl : originalUrl" 
+        :width="postInfo.sample ? postInfo.sample_width : postInfo.width" 
+        :height="postInfo.sample ? postInfo.sample_height : postInfo.height">
       </div>
 
-      <div class="post-comments">
-        <CommentList :comments="postComments"></CommentList>
-      </div>
+      <CommentList :comments="postComments"></CommentList>
+      
 
     </div>    
 
@@ -26,6 +33,7 @@
 import TagList from '../components/TagList.vue'
 import StatList from '../components/StatList.vue'
 import CommentList from '../components/CommentList.vue'
+import SearchBar from '../components/SearchBar.vue'
 
 export default{
   name: 'PostView',
@@ -37,7 +45,8 @@ export default{
       postTags: [],
       pageXML: '',
       postStats: {},
-      originalView: true
+      originalView: false,
+      postInfoNumberTries: 0,
     }
   },
   computed:{
@@ -58,9 +67,11 @@ export default{
     TagList,
     StatList,
     CommentList,
+    SearchBar
   },
   methods:{
     async getPostInfo(postId){
+      this.postInfoNumberTries++
       try {
         let reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/index.php?page=dapi&s=post&q=index&id=${postId}&json=1`)
         const req = await fetch(reqUrl)
@@ -73,7 +84,13 @@ export default{
         }
       } catch (error) {
         console.log(error);
-        this.getPostInfo(postId)
+        if(this.postInfoNumberTries < 10){
+          this.getPostInfo(postId)
+        }
+        if(this.postInfoNumberTries >= 10){
+          console.log("post with id "+ this.postId +" couldn't be found"); //make a toast +//create a toast system I guess
+        }
+
       }
     },
     async getPostComments(postId){
@@ -197,7 +214,11 @@ export default{
       
       this.postStats = stats
       //console.log(this.postStats);
-    }
+    },
+    changeToOriginal(){
+      this.originalView = true
+      this.postInfo.sample = false
+    },
   },
   mounted() {
     this.getPostInfo(this.postId)

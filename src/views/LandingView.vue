@@ -110,7 +110,6 @@
 
       </div>
 
-      
     </div>
     
     <footer class="bottom-section footer-section">
@@ -183,7 +182,6 @@ export default{
     },
     async autocompleteFetch(){
       this.showAutocomplete = false
-      this.lastQueueAmount = this.searchQueue.length
       let param = this.searchQueue.pop()
       let reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/autocomplete.php?q=${param}`)
       const req = await fetch(reqUrl)

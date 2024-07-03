@@ -18,8 +18,13 @@
 
 
 .post-info-sidebar{
-  //background-color: purple;
   padding: 0.5rem;
+  min-height: 100%;
+}
+
+.sidebar-content{
+  background-color: var(--neon-white);
+  height: 100%;
 }
 
 .post-content{
@@ -37,6 +42,31 @@
   text-align: center;
 }
 
-.post-comments{
-  background-color: gray;
+.view-original-button-container{
+ width: 100%;
+ 
+ padding: 1rem;
+ display: flex;
+ justify-content: center;
 }
+
+.view-original-button{
+  all: unset;
+  font-size: 1.3rem; 
+  padding: 0.5rem;
+  background-color: var(--neon-white);
+  color: var(--neon-dark);
+  border: 2px solid var(--neon-light-blue);
+  border-radius: 8px;
+
+ 
+  &:hover{
+    cursor: pointer;
+    background-color: #d7d7d7;
+  }
+  &:active{
+    background-color: var(--neon-light-blue);
+    color: var(--neon-white);
+  }
+}
+

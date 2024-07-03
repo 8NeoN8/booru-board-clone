@@ -6,13 +6,8 @@
     <ul class="comments-content">
       <template v-for="(comment, index) in comments" :key="index">
         <li class="comment">
-          <div class="comment-info">
-            <div class="comment-creator">
-              {{ comment.creator }}
-            </div>
-            <div class="comment-creation-date">
-              {{ comment.created_at }} 
-            </div>
+          <div class="comment-creator">
+            {{ comment.creator }}
           </div>
           <div class="comment-body">
             {{ comment.body }}

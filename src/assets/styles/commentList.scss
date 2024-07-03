@@ -28,18 +28,7 @@
   border-radius: 8px;
 }
 
-.comment-info{
-  display: flex;
-  justify-content: left;
-  gap: 1rem;
-}
-
 .comment-creator{
   font-weight: bold;
   font-size: 1.1rem;
-}
-
-.comment-creation-date{
-  text-decoration: underline;
-  color: var(--neon-orange);
 }
