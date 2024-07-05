@@ -3,9 +3,9 @@
 
     <div class="post-info-sidebar">
       <div class="sidebar-content">
-        <SearchBar></SearchBar>
-        <TagList :tagListObj="postTags"></TagList>
-        <StatList :stats="postStats"></StatList>
+        <SearchBar @sendSearch="searchBrowse($event)"></SearchBar>
+        <TagList :tagListObj="postTags" @ClickedTag="searchBrowse($event)"></TagList>
+        <StatList :stats="postStats" @clickedUploader="searchBrowse($event)"></StatList>
         <div class="view-original-button-container">
           <button v-if="postInfo.sample && !originalView" class="view-original-button" @click="changeToOriginal()">View Original</button>
         </div>
@@ -69,6 +69,7 @@ export default{
     CommentList,
     SearchBar
   },
+  emits:['updateNav'],
   methods:{
     async getPostInfo(postId){
       this.postInfoNumberTries++
@@ -219,8 +220,13 @@ export default{
       this.originalView = true
       this.postInfo.sample = false
     },
+    searchBrowse(tags){
+      console.log(tags);
+      this.$router.push(`/browse/${tags}`)
+    }
   },
   mounted() {
+    this.$emit('updateNav')
     this.getPostInfo(this.postId)
     this.getPostComments(this.postId)
   },

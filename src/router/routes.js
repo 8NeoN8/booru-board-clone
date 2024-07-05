@@ -14,6 +14,12 @@ const routes = [
     name:'Browser',
     component: BrowseView    
   },
+  {
+    path: '/browse/:tags',
+    name:'Browser',
+    component: BrowseView,
+    props:true,
+  },
   { 
     path: '/comments', 
     component: LandingView,

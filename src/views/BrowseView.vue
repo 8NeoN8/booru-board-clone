@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    ola browse
+    ola browse 
+    <br>
+    {{ tags }}
   </div>
 </template>
 
@@ -9,7 +11,13 @@ export default{
   name: 'BrowseView',
   data() {
     return {
-      debug: 'debug'
+      debug: 'debug',
+      searchUrl: 'https://safebooru.org/index.php?page=dapi&s=post&q=index&tags=1girl',
+    }
+  },
+  props:{
+    tags:{
+      type: String
     }
   },
   emits:['updateNav'],

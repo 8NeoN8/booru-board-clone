@@ -7,12 +7,16 @@
     <ul class="stats-content">
       
       <template v-for="(stat, key) in stats" :key="key">
-        <li v-if="key != 'by' && key != 'source'" class="stat-element">
+        <li v-if="key != 'source' && key != 'by'" class="stat-element">
           {{ key }}: {{ stat }}
         </li>
-        <li v-if="key == 'by' || key == 'source'" class="stat-element">
+        <li v-if="key == 'source'" class="stat-element">
           {{ key }}: <a target="_blank" :href="'https://'+stat" class="uploader-or-source-link">{{ stat }}</a>
         </li>
+        <li v-if="key == 'by'" class="stat-element" @click="this.$emit('clickedUploader', `user:${stat}`)">
+          {{ key }}: <span class="uploader-stat"> {{ stat }} </span>
+        </li>
+
       </template>
 
     </ul>
@@ -28,6 +32,7 @@ export default{
       test: 'Statistics'
     }
   },
+  emits:['clickedUploader'],
   props:{
     stats:{
       type: Object,

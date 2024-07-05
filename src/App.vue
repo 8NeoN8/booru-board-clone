@@ -17,6 +17,7 @@ export default{
       sampleRequestUrlPost: 'https://safebooru.org/index.php?page=dapi&s=post&q=index&id=4991637&json=1',
       sampleRequestUrlPostComments: 'https://safebooru.org/index.php?page=dapi&s=comment&q=index&post_id=4959145',
       postAmount: 4788688,
+      getPostWithThisTags: 'https://safebooru.org/index.php?page=dapi&s=post&q=index&tags=1girl',
       autocompleteLinkForSearchInput: 'https://safebooru.org/autocomplete.php?q=${input}',
       forTags: 'https://safebooru.org/index.php?page=dapi&s=tag&q=index&name=1girl',
       forMultipleTags: 'https://safebooru.org/index.php?page=post&s=list&tags=1girl+glasses',

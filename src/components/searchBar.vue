@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <button class="search-button" @focus="showAC = false" @click="sendSearchAndBrowse()" @keyup.prevent.enter="sendSearchAndBrowse()">
+    <button class="search-button" @focus="showAC = false" @click="sendSearchAndBrowse(searchTerms)" @keyup.prevent.enter="sendSearchAndBrowse()">
       Search
     </button>
 
@@ -55,6 +55,9 @@ export default{
       searchQueue: [],
     }
   },
+  emits:[
+    'sendSearch'
+  ],
   methods: {
     async getAcItems(){
       let queryData = null
@@ -98,8 +101,8 @@ export default{
         this.showAC = true
       }
     },
-    sendSearchAndBrowse(){
-
+    sendSearchAndBrowse(searchTerms){
+      this.$emit('sendSearch', searchTerms)
     },
     insertSelectedTag(tag,search){
       this.showAC = false
@@ -108,7 +111,7 @@ export default{
       poppedSearch = search
       if(search.includes(' ')){
         poppedSearch = search.split(' ').pop()
-      } 
+      }
 
       this.searchTerms = this.searchTerms.replace(poppedSearch, tag)
 
