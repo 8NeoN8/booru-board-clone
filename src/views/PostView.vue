@@ -30,10 +30,20 @@
 </template>
 
 <script>
-import TagList from '../components/TagList.vue'
-import StatList from '../components/StatList.vue'
-import CommentList from '../components/CommentList.vue'
-import SearchBar from '../components/SearchBar.vue'
+import { defineAsyncComponent } from 'vue';
+
+const TagList = defineAsyncComponent({
+  loader: () => import('../components/TagList.vue')
+})
+const CommentList = defineAsyncComponent({
+  loader: () => import('../components/CommentList.vue')
+})
+const StatList = defineAsyncComponent({
+  loader: () => import('../components/StatList.vue')
+})
+const SearchBar = defineAsyncComponent({
+  loader: () => import('../components/SearchBar.vue')
+})
 
 export default{
   name: 'PostView',

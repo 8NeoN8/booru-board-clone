@@ -16,7 +16,7 @@ const routes = [
   },
   {
     path: '/browse/:tags',
-    name:'Browser',
+    name:'BrowserTags',
     component: BrowseView,
     props:true,
   },

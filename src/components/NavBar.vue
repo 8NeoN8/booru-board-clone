@@ -1,7 +1,12 @@
 <template>
   <div>
-    asldkfhaskljdfbh
-    {{ test }}  
+    safebooru
+    myaccount
+    browse
+    forum
+    twitter
+    about
+    patreon
   </div>
 </template>
 

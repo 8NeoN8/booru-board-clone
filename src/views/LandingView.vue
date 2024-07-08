@@ -24,7 +24,7 @@
           <div class="card">
             <RouterLink class="card-link" to="comments"> 
               <span class="card-text">
-                Comments
+                About
               </span>
             </RouterLink>
           </div>
