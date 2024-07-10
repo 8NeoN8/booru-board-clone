@@ -1,14 +1,12 @@
 ## TO DO'S
-+ Post Page
-  + onclick search for taglist's tags
-  + onclick search for post's uploader
-  + make tags fetch a 10 at a time batch request
-
-+ Header
-
-+ Forum
-
-+ Landing Page
-  + make landing scrapper to get the number of posts
-
-+ 
++ Create SideBar Component, which includes taglist, statlist, and searchbar
++ Try to make browse page tag processing faster, maybe cut the amount by half, or add a loading component while proccessing
++ Refactor taglist to make every category a toggable dropdown
++ Add mascot image to sidebar
++ Implement sidebar to post and browse pages
++ Redesign and finish styles for browse page
++ Redesign NavBar
++ Finish NavBar
++ Create state stores to manage visited pages to reduce amount of api calls
++ Get original landing page xml to get accurate amount of posts displayed
++ Make mobile and tablet styles for every page (lowest priority so far)
