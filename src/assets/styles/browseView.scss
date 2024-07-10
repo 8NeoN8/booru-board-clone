@@ -1,0 +1,29 @@
+#app{
+  height: fit-content;
+}
+.browser-container{
+  display: flex;
+}
+
+.posts{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  text-align: center;
+  justify-content: center;
+  background-color: var(--neon-white);
+}
+
+.listed-post{
+  display: inline-block;
+  width: 160px;
+  height: 160px;
+  background-color: var(--neon-light-blue);
+  padding: 0.3rem;
+  border-radius: 5px;
+}
+
+.post-thumbnail{
+  max-width: 150px;
+  max-height: 150px;
+}

@@ -174,7 +174,6 @@ export default{
         count: tagXml.attributes.count.value,
         name: tagXml.attributes.name.value,
         id: tagXml.attributes.id.value,
-
       }
 
       return tag
