@@ -3,9 +3,16 @@
 
     <div class="post-info-sidebar">
       <div class="sidebar-content">
-        <SearchBar @sendSearch="searchBrowse($event)"></SearchBar>
+        <SideBar 
+          :tags="postTags" 
+          :stats="postStats" 
+          @ClickedTag="searchBrowse($event)" 
+          @clickedUploader="searchBrowse($event)"
+          @sendSearch="searchBrowse($event)"
+        ></SideBar>
+        <!-- <SearchBar @sendSearch="searchBrowse($event)"></SearchBar>
         <TagList :tagListObj="postTags" @ClickedTag="searchBrowse($event)"></TagList>
-        <StatList :stats="postStats" @clickedUploader="searchBrowse($event)"></StatList>
+        <StatList :stats="postStats" @clickedUploader="searchBrowse($event)"></StatList> -->
         <div class="view-original-button-container">
           <button v-if="postInfo.sample && !originalView" class="view-original-button" @click="changeToOriginal()">View Original</button>
         </div>
@@ -32,7 +39,7 @@
 <script>
 import { defineAsyncComponent } from 'vue';
 
-const TagList = defineAsyncComponent({
+/* const TagList = defineAsyncComponent({
   loader: () => import('../components/TagList.vue')
 })
 const CommentList = defineAsyncComponent({
@@ -43,6 +50,9 @@ const StatList = defineAsyncComponent({
 })
 const SearchBar = defineAsyncComponent({
   loader: () => import('../components/SearchBar.vue')
+}) */
+const SideBar = defineAsyncComponent({
+  loader: () => import('../components/SideBar.vue')
 })
 
 export default{
@@ -74,10 +84,12 @@ export default{
     }
   },
   components:{
-    TagList,
+    /* TagList,
     StatList,
+    SearchBar, */
     CommentList,
-    SearchBar
+    SideBar
+
   },
   emits:['updateNav'],
   methods:{

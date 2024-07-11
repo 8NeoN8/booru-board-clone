@@ -1,5 +1,6 @@
 ## TO DO'S
 + Create SideBar Component, which includes taglist, statlist, and searchbar
+  + learn to pass info to the taglist/statlist/searchbar directly without having to go through the sidebar component and then pass it down or up
 + Try to make browse page tag processing faster, maybe cut the amount by half, or add a loading component while proccessing
 + Refactor taglist to make every category a toggable dropdown
 + Add mascot image to sidebar
