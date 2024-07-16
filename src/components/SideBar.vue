@@ -1,9 +1,11 @@
 <template>
   <div class="side-bar">
     <SearchBar @sendSearch="this.$emit('sendSearch',$event)"></SearchBar>
-    <TagList :tagListObj="tags" @ClickedTag="this.$emit('ClickedTag',$event)"></TagList>
-    <StatList :stats="stats" @clickedUploader="this.$emit('clickedUploader',$event)"></StatList>
-
+    <TagList v-if="tags" :tagListObj="tags" @ClickedTag="this.$emit('ClickedTag',$event)"></TagList>
+    <StatList v-if="stats" :stats="stats" @clickedUploader="this.$emit('clickedUploader',$event)"></StatList>
+    <div class="view-original-button-container">
+      <button v-if="showOGButton" class="view-original-button" @click="this.$emit('changeToOriginal')">View Original</button>
+    </div>
   </div>
 </template>
 
@@ -40,6 +42,10 @@ export default{
     stats:{
       type: Object
     },
+    showOGButton:{
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>

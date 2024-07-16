@@ -1,10 +1,10 @@
 <template>
   <div class="browser-container">
 
-    <div class="sidebar">
-      <TagList :tagListObj="postsTags"></TagList>
+    <div v-if="false" class="sidebar">
+      <SideBar :tagListObj="postsTags"></SideBar>
     </div>
-    <div class="posts">
+    <div class="posts" v-if="false">
       <template v-for="(post, index) in posts" :key="index">
         <div class="listed-post" @click="sendToPost(post)">
           <img class="post-thumbnail" :src="post.imageUrl">
@@ -18,8 +18,8 @@
 
 <script>
 import { defineAsyncComponent } from 'vue';
-const TagList = defineAsyncComponent({
-  loader: () => import('../components/TagList.vue')
+const SideBar = defineAsyncComponent({
+  loader: () => import('../components/SideBar.vue')
 })
 
 export default{
@@ -40,7 +40,7 @@ export default{
     }
   },
   components:{
-    TagList
+    SideBar
   },
   emits:['updateNav'],
   mounted() {
@@ -48,7 +48,7 @@ export default{
     //console.log(window.history); //* esto es pa ver si cuando se vuelve aqui ver si cargar los posts viejos o hacer otro fetch
   },
   created() {
-    this.getPostByTags(this.tags)
+    //this.getPostByTags(this.tags)
   },
   methods: {
     async getPostByTags(tags){

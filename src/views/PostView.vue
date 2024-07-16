@@ -5,17 +5,14 @@
       <div class="sidebar-content">
         <SideBar 
           :tags="postTags" 
-          :stats="postStats" 
+          :stats="postStats"
+          :showOGButton="postInfo.sample && !originalView"
           @ClickedTag="searchBrowse($event)" 
           @clickedUploader="searchBrowse($event)"
           @sendSearch="searchBrowse($event)"
-        ></SideBar>
-        <!-- <SearchBar @sendSearch="searchBrowse($event)"></SearchBar>
-        <TagList :tagListObj="postTags" @ClickedTag="searchBrowse($event)"></TagList>
-        <StatList :stats="postStats" @clickedUploader="searchBrowse($event)"></StatList> -->
-        <div class="view-original-button-container">
-          <button v-if="postInfo.sample && !originalView" class="view-original-button" @click="changeToOriginal()">View Original</button>
-        </div>
+          @changeToOriginal="changeToOriginal()"
+        >
+        </SideBar>
       </div>
     </div>
 
@@ -38,19 +35,9 @@
 
 <script>
 import { defineAsyncComponent } from 'vue';
-
-/* const TagList = defineAsyncComponent({
-  loader: () => import('../components/TagList.vue')
-})
 const CommentList = defineAsyncComponent({
   loader: () => import('../components/CommentList.vue')
 })
-const StatList = defineAsyncComponent({
-  loader: () => import('../components/StatList.vue')
-})
-const SearchBar = defineAsyncComponent({
-  loader: () => import('../components/SearchBar.vue')
-}) */
 const SideBar = defineAsyncComponent({
   loader: () => import('../components/SideBar.vue')
 })
@@ -84,12 +71,8 @@ export default{
     }
   },
   components:{
-    /* TagList,
-    StatList,
-    SearchBar, */
     CommentList,
     SideBar
-
   },
   emits:['updateNav'],
   methods:{
@@ -151,6 +134,14 @@ export default{
       return parsedComments
     },
     async getPostTags(tags){
+      /*
+      tag type 0 es general/metadata
+      tag type 1 es artist
+      tag type 2 es metadata NO FUNCIONA
+      tag type 3 es copyright
+      tag type 4 es chracter
+    */
+
       this.postTags = []
 
       let tagsUrls = []
@@ -255,13 +246,5 @@ export default{
 </script>
 
 <style lang="scss">
-/*
-  tag type 0 es general/metadata
-  tag type 1 es artist
-  tag type 2 es metadata NO FUNCIONA
-  tag type 3 es copyright
-  tag type 4 es chracter
-*/
 @import '../assets/styles/postView.scss';
-
 </style>
