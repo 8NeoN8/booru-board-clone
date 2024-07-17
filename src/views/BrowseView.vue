@@ -1,10 +1,7 @@
 <template>
   <div class="browser-container">
-
-    <div v-if="false" class="sidebar">
-      <SideBar :tagListObj="postsTags"></SideBar>
-    </div>
-    <div class="posts" v-if="false">
+    <SideBar :tags="postsTags"></SideBar>
+    <div class="posts">
       <template v-for="(post, index) in posts" :key="index">
         <div class="listed-post" @click="sendToPost(post)">
           <img class="post-thumbnail" :src="post.imageUrl">
@@ -48,7 +45,7 @@ export default{
     //console.log(window.history); //* esto es pa ver si cuando se vuelve aqui ver si cargar los posts viejos o hacer otro fetch
   },
   created() {
-    //this.getPostByTags(this.tags)
+    this.getPostByTags(this.tags)
   },
   methods: {
     async getPostByTags(tags){
@@ -74,18 +71,23 @@ export default{
       }else{
         reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/index.php?page=dapi&s=post&q=index&pid=${this.browsePage}&json=1`)
       }
-      const req = await fetch(reqUrl)
-      if(!req) return
-      let res = await req.json()
-      if(!res){
-        this.getPostByTags(this.tags)
-        return
-      }
-      if(res){
-        this.posts = res
-        this.requestTries = 0
-        this.processPostImages()
-        this.getPostsTags()
+      try {
+        const req = await fetch(reqUrl)
+        if(!req) return
+        let res = await req.json()
+        if(!res){
+          this.getPostByTags(this.tags)
+          return
+        }
+        if(res){
+          this.posts = res
+          this.requestTries = 0
+          this.processPostImages()
+          this.getPostsTags()
+        }
+      } catch (error) {
+        console.error(error);
+        this.getPostByTags(tags)
       }
     },
     processPostImages(){
@@ -96,6 +98,7 @@ export default{
       }
     },
     async getPostsTags(){
+      console.log('tags');
       let allPostTags = []
       for (let i = 0; i < this.posts.length; i++) {
         let newArr = this.posts[i].tags.split(' ')
@@ -108,7 +111,6 @@ export default{
       //! they do it like that in the source too btw
       
       let cutTags = allPostTags.slice(0,100)
-      //console.log(cutTags);
       this.fetchTags(cutTags)
 
     },
@@ -160,6 +162,7 @@ export default{
       orderedTags.Artist = this.postsTags.filter((tag) => tag.type == 1)
       orderedTags.General = this.postsTags.filter((tag) => tag.type == 0)
       this.postsTags = orderedTags
+      console.log('postTags',this.postsTags);
     },
     sendToPost(post){
       this.$router.push(`/post/${post.id}`)

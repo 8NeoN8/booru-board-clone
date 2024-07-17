@@ -1,6 +1,6 @@
 @import './src/assets/styles/_variables.scss';
 .tagList{
-  width: 20rem;
+  max-width: 20rem;
   background-color: var(--neon-white);
   padding: 0.5rem;
 }

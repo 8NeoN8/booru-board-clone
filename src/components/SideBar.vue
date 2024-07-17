@@ -51,4 +51,8 @@ export default{
 </script>
 
 <style>
+
+.side-bar{
+  background-color: var(--neon-white);
+}
 </style>

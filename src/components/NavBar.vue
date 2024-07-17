@@ -1,6 +1,6 @@
 <template>
   <div class="NavBar">
-    <div class="web-title">Safebooru</div>
+    <div class="web-title" @click="sendTo('/')">Safebooru</div>
     <ul class="nav-routes">
       <template v-for="(link, index) in navRoutes" :key="index">
         <li v-if="!link.isExternal" class="nav-link" @click="sendTo(link.route)">
@@ -14,12 +14,6 @@
         </li>
       </template>
     </ul>
-    myaccount
-    browse
-    forum
-    twitter
-    about
-    patreon
   </div>
 </template>
 
@@ -60,6 +54,11 @@ export default{
           isExternal: true
         }
       ]
+    }
+  },
+  methods: {
+    sendTo(route){
+      this.$router.push(route)
     }
   },
 }
