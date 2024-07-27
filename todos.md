@@ -11,3 +11,6 @@
 + Create state stores to manage visited pages to reduce amount of api calls
 + Get original landing page xml to get accurate amount of posts displayed
 + Make mobile and tablet styles for every page (lowest priority so far)
++ refactor landing page
++ inspect original forum to see if I can use their requests to show actual posts
++ make fake creation of posts and commenting on ohter posts

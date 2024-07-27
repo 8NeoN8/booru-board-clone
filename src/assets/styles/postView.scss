@@ -1,22 +1,13 @@
 @import './src/assets/styles/_variables.scss';
 
-
 .post-container{
-  all:unset;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  position: relative;
   background-color: var(--neon-light-blue);
-  
   display: flex;
+  min-width: 100%;
+  width: fit-content;
 }
 
 
-.post-info-sidebar{
-  padding: 0.5rem;
-  min-height: 100%;
-}
 
 .sidebar-content{
   background-color: var(--neon-white);
@@ -33,17 +24,20 @@
 }
 
 .post-image{
-  background-color: blue;
   width: 100%;
   text-align: center;
+  border: 2px solid var(--neon-light-blue);
 }
 
 .view-original-button-container{
  width: 100%;
- 
  padding: 1rem;
  display: flex;
  justify-content: center;
+}
+
+.view-original-label{
+
 }
 
 .view-original-button{
@@ -66,3 +60,14 @@
   }
 }
 
+.original-link-label{
+  color: var(--neon-light-blue);
+  text-decoration: underline;
+  &:hover{
+    cursor: pointer;
+    color: var(--neon-blue);
+  }
+  &:active{
+    color: var(--neon-red);
+  }
+}

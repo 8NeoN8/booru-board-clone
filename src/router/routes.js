@@ -1,48 +1,43 @@
-import BrowseView from '../views/BrowseView.vue'
-import LandingView from '../views/LandingView.vue'
-import PostView from '../views/PostView.vue'
-
-
 const routes = [
   { 
     path: '/', 
-    component: LandingView,
+    component: () => import('../views/LandingView.vue'),
     name:'Landing',
   },
   {
     path: '/browse',
     name:'Browser',
-    component: BrowseView    
+    component: () => import('../views/BrowseView.vue')    
   },
   {
     path: '/browse/:tags',
     name:'BrowserTags',
-    component: BrowseView,
+    component: () => import('../views/BrowseView.vue'),
     props:true,
   },
   { 
     path: '/comments', 
-    component: LandingView,
+    component: () => import('../views/LandingView.vue'),
     name:'Comments',
   },
   { 
     path: '/account', 
-    component: LandingView,
+    component: () => import('../views/LandingView.vue'),
     name:'Account',
   },
   { 
     path: '/forum', 
-    component: LandingView,
+    component: () => import('../views/LandingView.vue'),
     name:'Forum',
   },
   { 
     path: '/post', 
-    component: PostView,
+    component: () => import('../views/PostView.vue'),
     name:'Post',
   },
   { 
     path: '/post/:postId', 
-    component: PostView,
+    component: () => import('../views/PostView.vue'),
     name:'PostFull',
     props: true
   },

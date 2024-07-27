@@ -1,28 +1,30 @@
 <template>
   <div class="container post-container">
 
-    <div class="post-info-sidebar">
-      <div class="sidebar-content">
-        <SideBar 
-          :tags="postTags" 
-          :stats="postStats"
-          :showOGButton="postInfo.sample && !originalView"
-          @ClickedTag="searchBrowse($event)" 
-          @clickedUploader="searchBrowse($event)"
-          @sendSearch="searchBrowse($event)"
-          @changeToOriginal="changeToOriginal()"
-        >
-        </SideBar>
-      </div>
-    </div>
+    <SideBar 
+      :tags="postTags" 
+      :stats="postStats"
+      :showOGButton="postInfo.sample && !originalView"
+      @ClickedTag="searchBrowse($event)" 
+      @clickedUploader="searchBrowse($event)"
+      @sendSearch="searchBrowse($event)"
+      @changeToOriginal="changeToOriginal()"
+    >
+    </SideBar>
 
     <div class="post-content">
 
       <div class="post-image">
+
+        <div v-if="!originalView" class="view-original-label">
+          This is a Sample size, click <span @click="changeToOriginal()" class="original-link-label">Here</span> if you want to see the original image.
+        </div>
+
         <img v-if="Object.keys(postInfo)" 
-        :src="postInfo.sample ? sampleUrl : originalUrl" 
-        :width="postInfo.sample ? postInfo.sample_width : postInfo.width" 
-        :height="postInfo.sample ? postInfo.sample_height : postInfo.height">
+          :src="postInfo.sample ? sampleUrl : originalUrl" 
+          :width="postInfo.sample ? postInfo.sample_width : postInfo.width" 
+          :height="postInfo.sample ? postInfo.sample_height : postInfo.height"
+        >
       </div>
 
       <CommentList :comments="postComments"></CommentList>
@@ -61,7 +63,7 @@ export default{
       return `https://safebooru.org//images/${this.postInfo.directory}/${this.postInfo.image}?${this.postInfo.id}`
     },
     sampleUrl(){
-      return `https://safebooru.org//samples/${this.postInfo.directory}/sample_${this.postInfo.image}?${this.postInfo.id}`
+      return `https://safebooru.org//samples/${this.postInfo.directory}/sample_${this.postInfo.image.split('.')[0]}.jpg?${this.postInfo.id}`
     },
   },
   props:{
@@ -84,7 +86,7 @@ export default{
         if(req){
           let res = await req.json()
           this.postInfo = res[Object.keys(res)[0]]
-          console.log(this.postInfo);
+          //console.log(this.postInfo);
           this.getPostTags(this.postInfo.tags.split(' '))
           this.postPageScrapper()
         }
@@ -110,7 +112,7 @@ export default{
         let xml = parser.parseFromString(res, "text/xml")
         
         this.postComments = this.parseXmlCommentsFunYay(xml)
-        if(this.postComments.length < 1) console.log('no comments'); else console.log('comments: ', this.postComments.length);
+        //if(this.postComments.length < 1) console.log('no comments'); else console.log('comments: ', this.postComments.length);
       }
     },
     parseXmlCommentsFunYay(xml){
@@ -189,7 +191,7 @@ export default{
       orderedTags.Artist = this.postTags.filter((tag) => tag.type == 1)
       orderedTags.General = this.postTags.filter((tag) => tag.type == 0)
       this.postTags = orderedTags
-      console.log(this.postTags);
+      //console.log(this.postTags);
     },
     async postPageScrapper(){
       let reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/index.php?page=post&s=view&id=${this.postId}`)
@@ -233,7 +235,7 @@ export default{
       this.postInfo.sample = false
     },
     searchBrowse(tags){
-      console.log(tags);
+      //console.log(tags);
       this.$router.push(`/browse/${tags}`)
     }
   },
