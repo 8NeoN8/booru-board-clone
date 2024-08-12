@@ -1,61 +1,21 @@
 <template>
-  <div class="container landing-container flex flex-column justify-between x-hidden">
+  <div class="landing-container flex flex-column justify-between x-hidden">
 
     <div class="top-section landing-img-container">
       <img class="landing-img" src="https://safebooru.org/includes/header.png">
     </div>
 
     <div class="middle-section">
-      <div class="middle-section-cards ph-1">
 
-        <div class="cards-title fs-2 text-center">
-          Quickly go to one of our pages
-        </div>
-
-        <div class="option-cards">
-
-          <div class="card">
-            <RouterLink class="card-link" to="browse"> 
-              <span class="card-text">
-                Browse
-              </span>
-            </RouterLink>
-          </div>
-          <div class="card">
-            <RouterLink class="card-link" to="comments"> 
-              <span class="card-text">
-                About
-              </span>
-            </RouterLink>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="card">
-            <RouterLink class="card-link" to="account"> 
-              <span class="card-text">
-                My Account
-              </span>
-            </RouterLink>
-          </div>
-          <div class="card">
-            <RouterLink class="card-link" to="forum"> 
-              <span class="card-text">
-                The Forum
-              </span>
-            </RouterLink>
-          </div>
-
-
-        </div>
-
+      <div class="links-container">
+        <template v-for="(link, index) in links" :key="index">  
+          <RouterLink class="card-link" :to="link.toLowerCase()">
+            {{ link }}
+          </RouterLink>
+        </template>
       </div>
 
       <div class="middle-section-search">
-        
-        <div class="search-title fs-2 text-center">
-          ...Or look for something specific!
-        </div>
 
         <div class="search-bar-section pt-1">
 
@@ -89,7 +49,7 @@
         <div class="posts-gifs">
 
           <div class="posts-top-text">
-            Currently Serving:
+            Currently Serving: {{ numberOfPosts }} posts!
           </div>
 
           <div class="posts-counter flex w-100  justify-center">
@@ -98,12 +58,8 @@
             </template>
           </div>
   
-          <div class="posts-number">
-            {{ postCount }} posts!
-          </div>
-  
           <small class="gelbooru-version">
-            Running Gelbooru Beta 0.2.0
+            (NOT HERE) Running Gelbooru Beta 0.2.0
           </small>
           
         </div>
@@ -114,7 +70,7 @@
     
     <footer class="bottom-section footer-section">
       <p class="footer-text">
-        Total number of visitors so far: 1 billion gizillion 
+        Total number of visitors so far: {{ numberOfVisitors }}
         <br> <!-- 36,521,292 -->
         Original concept by Danbooru. Clone design by AGDevs
       </p>
@@ -132,10 +88,8 @@ export default{
   },
   data() {
     return {
-      debug: 'debug',
-      links:['Browse', 'Comments', 'My Account', 'Forum'],
-      postCount: 4728638,
-      NumberGifs: [4,7,2,8,6,3,8],
+      links:['Browse', 'Comments', 'Account', 'Forum'],
+      NumberGifs: null,
       searchTerms:'',
       corsProxy: 'https://corsproxy.io/?',
       autocomplete: [],
@@ -143,10 +97,10 @@ export default{
       lastQueueAmount: 0,
       searchQueue: [],
       fetching: false,
-      delayedFetch: false,
+      numberOfPosts: null,
+      numberOfVisitors: null,
     }
   },
-  emits:['updateNav'],
   methods: {
     test(){
       console.log('this is test');
@@ -214,22 +168,48 @@ export default{
       this.$router.push(`/post/${postId}`)
     },
     randomId(){
-      let randomPostId = parseInt(Math.random() * this.postCount);
+      let randomPostId = parseInt(Math.random() * this.numberOfPosts);
       return randomPostId
     },
     sendSearch(){
-
     },
+    async getLandingPage(){
+      let reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org`)
+      const req = await fetch(reqUrl)
+      if(req){
+        let res = await req.text()
+      
+        let parser = new DOMParser()
+        let html = parser.parseFromString(res, "text/html")
+        
+        this.getNumberOfPosts(html)
+        this.getNumberOfVisitors(html)
+      }
+    },
+    getNumberOfPosts(html){
+      const body = html.getElementById('static-index')
+      const paragraph = Array.from(body.getElementsByTagName('p'))[0]
+      let posts = paragraph.innerText
+      posts = posts.split('-')[0].split(' ')[1].split(',').join('')
+      this.numberOfPosts = posts
+      this.NumberGifs = posts.split('')
+    },
+    getNumberOfVisitors(html){
+      let visitors = Array.from(html.getElementsByTagName('small'))[0].innerText
+
+      visitors = visitors.split(':')[1].replace(' ', '')
+
+      this.numberOfVisitors = visitors
+    }
   },
   mounted() {
 
-    
+    this.getLandingPage()
 
   },
 }
 </script>
 
 <style lang="scss">
-@import '../assets/styles/_variables.scss';
 @import '../assets/styles/landingView.scss';
 </style>

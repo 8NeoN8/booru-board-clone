@@ -1,4 +1,5 @@
 <template>
+  <NavBar></NavBar>
   <div class="container post-container">
 
     <SideBar 
@@ -43,6 +44,9 @@ const CommentList = defineAsyncComponent({
 const SideBar = defineAsyncComponent({
   loader: () => import('../components/SideBar.vue')
 })
+const NavBar = defineAsyncComponent({
+  loader: () => import('../components/NavBar.vue')
+})
 
 export default{
   name: 'PostView',
@@ -74,9 +78,9 @@ export default{
   },
   components:{
     CommentList,
-    SideBar
+    SideBar,
+    NavBar,
   },
-  emits:['updateNav'],
   methods:{
     async getPostInfo(postId){
       this.postInfoNumberTries++
@@ -240,7 +244,6 @@ export default{
     }
   },
   mounted() {
-    this.$emit('updateNav')
     this.getPostInfo(this.postId)
     this.getPostComments(this.postId)
   },

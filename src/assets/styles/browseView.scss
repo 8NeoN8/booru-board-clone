@@ -3,6 +3,15 @@
 }
 .browser-container{
   display: flex;
+  background-color: var(--neon-white);
+  min-height: 100vh;
+}
+
+.browser-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
 }
 
 .posts{
@@ -12,6 +21,7 @@
   text-align: center;
   justify-content: center;
   background-color: var(--neon-white);
+  padding: 1rem 0;
 }
 
 .listed-post{
@@ -21,9 +31,55 @@
   background-color: var(--neon-light-blue);
   padding: 0.3rem;
   border-radius: 5px;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .post-thumbnail{
   max-width: 150px;
   max-height: 150px;
+}
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  background-color: var(--neon-light-blue);
+  font-size: 3rem;
+  gap: 3rem;
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.prevPage, .nextPage{
+  font-size: 2rem;
+  font-weight: bold;
+  border: 1px var(--neon-white) solid;
+  border-radius: 5px;
+  width: 2.5rem;
+  text-align: center;
+  color: var(--neon-light-blue);
+  background-color: var(--neon-white);
+
+  &:active{
+    color: var(--neon-white);
+    background-color: var(--neon-light-blue);
+  }
+}
+
+.current-page{
+  font-size: 1.5rem;
+  line-height: 2.7rem;
+  text-align: center;
+  color: var(--neon-white);
+  text-decoration: underline;
+  text-decoration-thickness: 0.2rem;
+}
+
+.prevPage, .nextPage, .current-page{
+  &:hover{
+    cursor: pointer;
+  }
 }

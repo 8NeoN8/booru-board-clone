@@ -1,14 +1,29 @@
 <template>
+  <NavBar></NavBar>
   <div class="browser-container">
-    <SideBar :tags="postsTags"></SideBar>
-    <div class="posts">
-      <template v-for="(post, index) in posts" :key="index">
-        <div class="listed-post" @click="sendToPost(post)">
-          <img class="post-thumbnail" :src="post.imageUrl">
+    <SideBar :tags="postsTags" @sendSearch="navBarSearch($event)"></SideBar>
+    <div class="browser-content">
+      <div class="posts">
+        <template v-for="(post, index) in posts" :key="index">
+          <div class="listed-post" :id="`post-${index}-${post.id}`" @click="sendToPost(post)">
+            <img class="post-thumbnail" :src="post.imageUrl">
+          </div>
+        </template>
+      </div>
+      
+      <div class="pagination">
+  
+        <div class="prevPage" @click="prevPage()">
+          &#8249;
         </div>
-      </template>
+        <div class="current-page">
+          {{ currentPage }}
+        </div>
+        <div class="nextPage" @click="nextPage()">
+          &#8250;
+        </div>
+      </div>
     </div>
-    
     
   </div>
 </template>
@@ -17,6 +32,9 @@
 import { defineAsyncComponent } from 'vue';
 const SideBar = defineAsyncComponent({
   loader: () => import('../components/SideBar.vue')
+})
+const NavBar = defineAsyncComponent({
+  loader: () => import('../components/NavBar.vue')
 })
 
 export default{
@@ -36,57 +54,54 @@ export default{
       type: String
     }
   },
-  components:{
-    SideBar
+  computed:{
+    currentPage(){
+      return this.browsePage + 1
+    }
   },
-  emits:['updateNav'],
+  components:{
+    SideBar,
+    NavBar
+  },
+  updated() {
+  },
   mounted() {
-    this.$emit('updateNav', true)
+    //this.getPostByTags(this.tags)
     //console.log(window.history); //* esto es pa ver si cuando se vuelve aqui ver si cargar los posts viejos o hacer otro fetch
   },
   created() {
     this.getPostByTags(this.tags)
+    if(this.tags) console.log(this.tags);
   },
   methods: {
     async getPostByTags(tags){
-      console.log('fetching images');
+      this.posts = []
+      if(this.requestTries >= 10) {
+        throw new Error("No post were found with this tags or they couldn't be reached, please write an issue on github if it keeps happening");
+      }
       this.requestTries++
       let allTags = ''
       if(tags){
-
         let separatedTags = tags.split(' ')
-        allTags = separatedTags[0]
-        if(separatedTags.length > 1){
-          allTags = ''
-          for (let i = 0; i < separatedTags.length; i++) {
-            allTags += `+${separatedTags[i]}`
-          }
-        }
+        allTags = separatedTags.join('+')
+        console.log(allTags);
       }
 
-
       let reqUrl = ''
-      if(tags){
+      if(tags != null && tags != ''){
         reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/index.php?page=dapi&s=post&q=index&pid=${this.browsePage}&tags=${allTags}&json=1`)
       }else{
         reqUrl = 'https://corsproxy.io/?' + encodeURIComponent(`https://safebooru.org/index.php?page=dapi&s=post&q=index&pid=${this.browsePage}&json=1`)
       }
       try {
         const req = await fetch(reqUrl)
-        if(!req) return
         let res = await req.json()
-        if(!res){
-          this.getPostByTags(this.tags)
-          return
-        }
-        if(res){
-          this.posts = res
-          this.requestTries = 0
-          this.processPostImages()
-          this.getPostsTags()
-        }
+        this.posts = res
+        this.requestTries = 0
+        this.processPostImages()
+        this.getPostsTags()
       } catch (error) {
-        console.error(error);
+        console.error('This error ocurred: ',error);
         this.getPostByTags(tags)
       }
     },
@@ -98,19 +113,15 @@ export default{
       }
     },
     async getPostsTags(){
-      console.log('tags');
       let allPostTags = []
       for (let i = 0; i < this.posts.length; i++) {
         let newArr = this.posts[i].tags.split(' ')
         allPostTags.push(...newArr)
       }
       allPostTags = [...new Set(allPostTags)]
-      //! the amount of unique individual tags usually goes above the one thousand 
-      //! so I'm gonna grab only the first 100 and fetch them in batches
-      //! I think that is the only realistic way of doing this honestly
-      //! they do it like that in the source too btw
       
       let cutTags = allPostTags.slice(0,100)
+      console.log(cutTags);
       this.fetchTags(cutTags)
 
     },
@@ -166,6 +177,11 @@ export default{
     },
     sendToPost(post){
       this.$router.push(`/post/${post.id}`)
+    },
+    navBarSearch(tags){
+      console.log(tags);
+      this.$router.push(`/browse/${tags}`)
+      this.getPostByTags(tags)
     }
   },
 }
