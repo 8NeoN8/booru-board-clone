@@ -1,5 +1,5 @@
 <template>
-  <div class="landing-container flex flex-column justify-between x-hidden">
+  <div class="landing-container">
 
     <div class="top-section landing-img-container">
       <img class="landing-img" src="https://safebooru.org/includes/header.png">
@@ -16,8 +16,8 @@
       </div>
 
       <div class="middle-section-search">
-
-        <div class="search-bar-section pt-1">
+        <SearchBar :landingPage="true"></SearchBar>
+        <!-- <div class="search-bar">
 
           <label for="search-input" class="search-input-label">This is a Tag based search</label>
 
@@ -44,28 +44,27 @@
             Random Post!
           </button>
 
+        </div> -->
+
+        
+      </div>      
+      <div class="posts-info">
+
+        <div class="posts-top-text">
+          Currently Serving: {{ numberOfPosts }} posts!
         </div>
 
-        <div class="posts-gifs">
-
-          <div class="posts-top-text">
-            Currently Serving: {{ numberOfPosts }} posts!
-          </div>
-
-          <div class="posts-counter flex w-100  justify-center">
-            <template v-for="(gif, index) in NumberGifs" :key="index">
-              <img :src="`https://safebooru.org/counter/${gif}.gif`" class="post-gif">
-            </template>
-          </div>
-  
-          <small class="gelbooru-version">
-            (NOT HERE) Running Gelbooru Beta 0.2.0
-          </small>
-          
+        <div class="post-counter flex w-100  justify-center">
+          <template v-for="(gif, index) in NumberGifs" :key="index">
+            <img :src="`https://safebooru.org/counter/${gif}.gif`" class="post-counter-gif">
+          </template>
         </div>
 
+        <small class="gelbooru-version">
+          (NOT HERE) Running Gelbooru Beta 0.2.0
+        </small>
+        
       </div>
-
     </div>
     
     <footer class="bottom-section footer-section">
@@ -81,10 +80,17 @@
 
 <script>
 import { RouterLink } from 'vue-router'
+import { defineAsyncComponent } from 'vue';
+
+const SearchBar = defineAsyncComponent({
+  loader: () => import('../components/SearchBar.vue')
+})
+
 export default{
   name: 'LandingView',
   components:{
-    RouterLink
+    RouterLink,
+    SearchBar
   },
   data() {
     return {

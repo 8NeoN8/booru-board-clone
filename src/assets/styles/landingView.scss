@@ -11,11 +11,14 @@
 .landing-container{
   background-color: var(--neon-light-blue);
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .landing-img-container{
-  background-color: red;
+  border-bottom: 3px solid red;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -30,8 +33,55 @@
   aspect-ratio: auto;
 }
 
+.middle-section{
+  background-color: lightgray;
+  height: 100%;
+  max-height: 70%;
+}
+
+.middle-section-search{
+  background-color: red;
+  display: flex;
+  justify-content: center;
+}
+
+.bottom-section{
+  background-color: yellow;
+  height: 30%;
+  max-height: 10%;
+}
+
+.links-container{
+  background-color: red;
+  display: flex;
+  justify-content: center;
+}
+
 //* DESKTOP DESIGN STYLES
 @media screen and (min-width: 1280px){
+
+  .links-container{
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    font-size: 1.3rem;
+    padding: 1rem;
+  }
+
+  .card-link{
+    text-decoration: none;
+    color: var(--neon-light-blue);
+    padding: 1rem;
+    background-color: var(--neon-white);
+    border: 1px solid var(--neon-white);
+    border-radius: 8px;
+    
+    &:hover{
+      background-color: var(--neon-light-blue);
+      color: var(--neon-white);
+      cursor: pointer;
+    }
+  }
 }
 
 //* LAPTOP DESIGN STYLES

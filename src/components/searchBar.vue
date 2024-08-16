@@ -55,6 +55,12 @@ export default{
       searchQueue: [],
     }
   },
+  props:{
+    landingPage:{
+      type: Boolean,
+      default: false
+    }
+  },
   emits:[
     'sendSearch'
   ],
