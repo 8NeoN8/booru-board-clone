@@ -13,13 +13,13 @@
       
       <div class="pagination">
   
-        <div class="prevPage" @click="prevPage()">
+        <div class="prevPage" @click="prevPage(tags)">
           &#8249;
         </div>
         <div class="current-page">
           {{ currentPage }}
         </div>
-        <div class="nextPage" @click="nextPage()">
+        <div class="nextPage" @click="nextPage(tags)">
           &#8250;
         </div>
       </div>
@@ -131,6 +131,8 @@ export default{
       let currentBatch = 0
       let reqUrls = []
 
+      this.postsTags = []
+
       while (currentBatch < 100) {
         let responses = []
         reqUrls = []
@@ -182,7 +184,18 @@ export default{
       console.log(tags);
       this.$router.push(`/browse/${tags}`)
       this.getPostByTags(tags)
-    }
+    },
+    prevPage(tags){
+      if(this.browsePage == 0) return
+      console.log('prev page?');
+      this.browsePage--
+      this.getPostByTags(tags)
+    },
+    nextPage(tags){
+      console.log('next page?');
+      this.browsePage++
+      this.getPostByTags(tags)
+    },
   },
 }
 </script>
